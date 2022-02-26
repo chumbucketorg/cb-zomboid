@@ -14,6 +14,7 @@ packages:
   - curl
   - gnupg-agent
   - software-properties-common
+  - git
 runcmd:
   # install docker following the guide: https://docs.docker.com/install/linux/docker-ce/ubuntu/
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -26,10 +27,8 @@ runcmd:
   - sudo chmod +x /usr/local/bin/docker-compose
   # Mount volume, WARNING! hardcoded id
   - sudo echo "/dev/disk/by-id/scsi-0HC_Volume_17241376 /mnt/zomboid-data ext4 discard,nofail,defaults 0 0" >> /etc/fstab
-  # Fetch files
-  - sudo apt-get -y install git
+  # Fetch files & image
   - sudo git clone https://github.com/chumbucketorg/cb-zomboid /root/cb-zomboid
-  # Retrieve docker image
   - sudo docker pull vmednis/zomboid
   # Set-up zomboid service
   - sudo cp /root/cb-zomboid/zomboid.service /etc/systemd/system/
