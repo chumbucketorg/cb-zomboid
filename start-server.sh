@@ -1,7 +1,7 @@
 #!/bin/bash
 hcloud server create \
   --datacenter hel1-dc2 \
-  --type cx11 \
+  --type cpx31 \
   --image ubuntu-20.04 \
   --volume zomboid-data \
   --automount \
