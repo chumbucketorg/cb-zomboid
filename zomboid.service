@@ -1,0 +1,8 @@
+[Unit]
+Description=Project Zomboid Server
+
+[Service]
+ExecStart=docker run -d -p 16261:16261 -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest
+
+[Install]
+WantedBy=multi-user.target

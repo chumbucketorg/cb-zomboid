@@ -26,6 +26,14 @@ runcmd:
   - sudo chmod +x /usr/local/bin/docker-compose
   # Mount volume, WARNING! hardcoded id
   - echo "/dev/disk/by-id/scsi-0HC_Volume_17241376 /mnt/zomboid-data ext4 discard,nofail,defaults 0 0" >> /etc/fstab
+  # Fetch files
+  - sudo apt-get -y install git
+  - git clone https://github.com/chumbucketorg/cb-zomboid
+  # Retrieve docker image
+  - docker pull vmednis/zomboid
+  # Set-up zomboid service
+  - cp cb-zomboid/zomboid.service /etc/systemd/system/
+  - systemctl enable zomboid
 power_state:
   mode: reboot
   message: Restarting after installing docker & docker-compose
