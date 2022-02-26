@@ -3,6 +3,8 @@ Description=Project Zomboid Server
 
 [Service]
 WorkingDirectory=/root
+Type=oneshot
+RemainAfterExit=true
 ExecStart=bash -c 'docker run -di -p 16261:16261/udp -p 16261:16261/tcp -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest'
 ExecStop=bash -c 'echo "quit" | socat EXEC:"docker attach $(docker ps -f ancestor=vmednis/zomboid:latest -q)",pty STDIN; docker wait $(docker ps -f ancestor=vmednis/zomboid:latest -q)'
 
