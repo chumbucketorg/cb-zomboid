@@ -15,6 +15,7 @@ packages:
   - gnupg-agent
   - software-properties-common
   - git
+  - socat
 runcmd:
   # install docker following the guide: https://docs.docker.com/install/linux/docker-ce/ubuntu/
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

@@ -2,8 +2,9 @@
 Description=Project Zomboid Server
 
 [Service]
-ExecStart=/bin/bash 'sleep 15; docker run -di -p 16261:16261/udp -p 16261:16261/tcp -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest'
-ExecStop=/bin/bash 'echo "quit" | socat EXEC:"docker attach $(docker ps -f ancestor=vmednis/zomboid:latest -q)",pty STDIN'
+WorkingDirectory=/root
+ExecStart=/usr/bin/bash '/usr/bin/docker run -di -p 16261:16261/udp -p 16261:16261/tcp -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest'
+ExecStop=/usr/bin/bash '/usr/bin/echo "quit" | /usr/bin/socat EXEC:"/usr/bin/docker attach $(/usr/bin/docker ps -f ancestor=vmednis/zomboid:latest -q)",pty STDIN'
 
 [Install]
 WantedBy=multi-user.target
