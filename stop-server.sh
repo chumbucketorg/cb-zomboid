@@ -1,4 +1,4 @@
 #!/bin/bash
-hcloud server poweroff zomboid-server
+hcloud server shutdown zomboid-server
 hcloud volume detach zomboid-data
 hcloud server delete zomboid-server
