@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 WorkingDirectory=/root
 Type=simple
-ExecStart=bash -c 'docker run --rm -p 16261:16261/udp -p 16261:16261/tcp -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest'
+ExecStart=bash -c 'docker run --rm -it -p 16261:16261/udp -p 16261:16261/tcp -v /mnt/zomboid-data/Zomboid:/root/Zomboid vmednis/zomboid:latest'
 ExecStop=bash -c 'echo "quit" | socat EXEC:"docker attach $(docker ps -f ancestor=vmednis/zomboid:latest -q)",pty STDIN; docker wait $(docker ps -f ancestor=vmednis/zomboid:latest -q)'
 
 [Install]
